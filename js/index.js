@@ -3,8 +3,11 @@ const containerCartProducts = document.querySelector(
 	'.container-cart-products'
 );
 
+
+
 btnCart.addEventListener('click', () => {
 	containerCartProducts.classList.toggle('hidden-cart');
+	
 });
 
 
@@ -21,6 +24,8 @@ const countProducts = document.querySelector('#contador-productos');
 
 const cartEmpty = document.querySelector('.cart-empty');
 const cartTotal = document.querySelector('.cart-total');
+
+
 
 productsList.addEventListener('click', e => {
 	if (e.target.classList.contains('btn-add-cart')) {
@@ -55,15 +60,25 @@ productsList.addEventListener('click', e => {
 });
 
 rowProduct.addEventListener('click', e => {
+		Swal.fire({
+			title: "¿Estás seguro?",
+			text: "¡No puedes revertir esto!",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "_Sí, ¡Borra esto!",
+			cancelButtonText: "Cancelar"
+	 	 })
+	  
 	if (e.target.classList.contains('icon-close')) {
 		const product = e.target.parentElement;
 		const title = product.querySelector('p').textContent;
 
 		allProducts = allProducts.filter(
 			product => product.title !== title
+			
 		);
-
-		console.log(allProducts);
 
 		showHTML();
 	}
@@ -96,7 +111,7 @@ const showHTML = () => {
                 <p class="titulo-producto-carrito">${product.title}</p>
                 <span class="precio-producto-carrito">${product.price}</span>
             </div>
-            <svg
+			<svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -110,6 +125,7 @@ const showHTML = () => {
                     d="M6 18L18 6M6 6l12 12"
                 />
             </svg>
+			
         `;
 
 		rowProduct.append(containerProduct);
@@ -122,7 +138,15 @@ const showHTML = () => {
 	valorTotal.innerText = `$${total}`;
 	countProducts.innerText = totalOfProducts;
 
-
-
-	localStorage.setItem("products-cart",JSON.stringify(total))
+	
+	
 };
+
+
+
+
+
+
+
+
+

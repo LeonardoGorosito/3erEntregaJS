@@ -4,11 +4,16 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
 	<link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
 	<header>
 		<h1>PCProductosAR</h1>
+
+		
 
 		<div class="container-icon">
 			<div class="container-cart-icon">
@@ -30,14 +35,19 @@
 					<span id="contador-productos">0</span>
 				</div>
 			</div>
+			
+			
+
+
+
 
 			<div class="container-cart-products hidden-cart">
 				<div class="row-product hidden">
 					<div class="cart-product">
 						<div class="info-cart-product">
-							<span class="cantidad-producto-carrito">1</span>
-							<p class="titulo-producto-carrito">Zapatos Nike</p>
-							<span class="precio-producto-carrito">$80</span>
+						<span class="cantidad-producto-carrito"></span>
+							<p class="titulo-producto-carrito"></p>
+							<span class="precio-producto-carrito"></span>
 						</div>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +68,7 @@
 
 				<div class="cart-total hidden">
 					<h3>Total:</h3>
-					<span class="total-pagar">$200</span>
+					<span class="total-pagar">$0</span>
 				</div>
 				<p class="cart-empty">El carrito está vacío</p>
 			</div>
@@ -72,7 +82,7 @@
 			<div class="info-product">
 				<h2>RTX 4090</h2>
 				<p class="price">$1500</p>
-				<button class="btn-add-cart">Añadir al carrito</button>
+				<button class="btn-add-cart" id="toastify">Añadir al carrito</button>
 			</div>
 		</div>
 		<div class="item">
@@ -84,7 +94,7 @@
 			<div class="info-product">
 				<h2>RTX 4080</h2>
 				<p class="price">$1350</p>
-				<button class="btn-add-cart">Añadir al carrito</button>
+				<button class="btn-add-cart"id="toastify">Añadir al carrito</button>
 			</div>
 		</div>
 		<div class="item">
@@ -96,7 +106,7 @@
 			<div class="info-product">
 				<h2>RTX 4070</h2>
 				<p class="price">$1150</p>
-				<button class="btn-add-cart">Añadir al carrito</button>
+				<button class="btn-add-cart" id="toastify">Añadir al carrito</button>
 			</div>
 		</div>
 	</div>
@@ -105,6 +115,8 @@
 		<h2>©Todos los derechos reservados a PCProductosAR 2024</h2>
 	</footer>
 
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<script src="./js/index.js"></script>
 </body>
 </html>
