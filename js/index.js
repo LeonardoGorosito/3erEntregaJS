@@ -3,7 +3,18 @@ const containerCartProducts = document.querySelector(
 	'.container-cart-products'
 );
 
+const localStorage = window.localStorage;
 
+window.addEventListener('DOMContentLoaded', () => {
+	const storedProducts = localStorage.getItem('cartProducts');
+	if (storedProducts) {
+	  allProducts = JSON.parse(storedProducts);
+	  showHTML();
+	  saveProductsToLocalStorage();
+
+	}
+  });
+  
 
 btnCart.addEventListener('click', () => {
 	containerCartProducts.classList.toggle('hidden-cart');
@@ -24,6 +35,10 @@ const countProducts = document.querySelector('#contador-productos');
 
 const cartEmpty = document.querySelector('.cart-empty');
 const cartTotal = document.querySelector('.cart-total');
+
+const saveProductsToLocalStorage = () => {
+	localStorage.setItem('cartProducts', JSON.stringify(allProducts));
+  };
 
 
 
@@ -56,32 +71,35 @@ productsList.addEventListener('click', e => {
 		}
 
 		showHTML();
+		saveProductsToLocalStorage();
+
 	}
 });
 
 rowProduct.addEventListener('click', e => {
-		Swal.fire({
-			title: "¿Estás seguro?",
-			text: "¡No puedes revertir esto!",
-			icon: "warning",
-			showCancelButton: true,
-			confirmButtonColor: "#3085d6",
-			cancelButtonColor: "#d33",
-			confirmButtonText: "_Sí, ¡Borra esto!",
-			cancelButtonText: "Cancelar"
-	 	 })
-	  
+
 	if (e.target.classList.contains('icon-close')) {
-		const product = e.target.parentElement;
-		const title = product.querySelector('p').textContent;
-
-		allProducts = allProducts.filter(
-			product => product.title !== title
-			
-		);
-
-		showHTML();
-	}
+		Swal.fire({
+		  title: "¿Estás seguro?",
+		  text: "¿Deseas eliminar este producto?",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: '¡Sí, eliminarlo!',
+		  cancelButtonText: 'Cancelar'
+		}).then((result) => {
+		  if (result.isConfirmed) {
+			// Código existente para encontrar información del producto y filtrar productos
+			const product = e.target.parentElement;
+			const title = product.querySelector('p').textContent;
+			allProducts = allProducts.filter(product => product.title !== title);
+			showHTML();
+			saveProductsToLocalStorage();
+		  }
+		});
+	  }
+	  
 });
 
 const showHTML = () => {
