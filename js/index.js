@@ -90,7 +90,6 @@ rowProduct.addEventListener('click', e => {
 		  cancelButtonText: 'Cancelar'
 		}).then((result) => {
 		  if (result.isConfirmed) {
-			// Código existente para encontrar información del producto y filtrar productos
 			const product = e.target.parentElement;
 			const title = product.querySelector('p').textContent;
 			allProducts = allProducts.filter(product => product.title !== title);
